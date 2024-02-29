@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calories Calculator</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'cssstyle.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="header">Calories Calculator</h1>
+
+        <!-- <div class="box">
+            <h2 class="box-header">Input Text</h2>
+            <hr class="divider">
+            <input type="text" class="input-field" placeholder="Enter text">
+        </div> -->
+
+        <div class="box">
+            <h2 class="box-header">Choose an Image</h2>
+            <hr class="divider">
+            <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+                <div id="drop-area" class="drop-area" ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
+                    <div class="text">Drag & Drop Image Here</div>
+                    <div class="text">or</div>
+                    <input type="file" name="image" id="fileInput" accept="image/*" style="display: none;"
+                        onchange="handleFiles(event)">
+                    <label for="fileInput" class="button">Browse Files</label>
+                    <button id="clear-btn" class="button" style="display: none;" onclick="clearImage()">Clear
+                        Image</button>
+                    <div id="image-preview"></div>
+                </div>
+        </div>
+
+        <div class="box">
+            <button id="submit-btn" class="submit-button">Submit</button>
+        </div>
+    </div>
+    </form>
+    <div id="output" class="output">
+                        <p>
+                            {{ image_description }}
+                        </p>
+                    </div>
+
+    <script src="{% static 'javascript.js' %}"></script>
+</body>
+
+</html>
